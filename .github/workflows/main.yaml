@@ -1,0 +1,17 @@
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  check:
+    name: Check uptime
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - name: Bun install
+        run: bun install
+      - name: Bun run
+        run: bun run index.ts
